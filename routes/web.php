@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\{DashboardController, ProfileController, Question, QuestionController};
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Auth, Route};
 
 Route::get('/', function () {
     if (app()->isLocal()) {
-        auth()->loginUsingId(1);
+        Auth::loginUsingId(1);
 
-        return view('dashboard');
+        return to_route('dashboard');
     }
 
     return view('welcome');
