@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionController extends Controller
 {
@@ -33,6 +35,15 @@ class QuestionController extends Controller
             'question' => request()->question,
             'draft'    => true,
         ]);
+
+        return back();
+    }
+
+    public function destroy(Question $question): RedirectResponse
+    {
+        Gate::authorize('destroy', $question);
+
+        $question->delete();
 
         return back();
     }
