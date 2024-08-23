@@ -4,7 +4,7 @@
             {{ __('My Questions') }}
         </x-header>
     </x-slot>
-    w
+
     <x-container>
         <x-form post :action="route('question.store')">
             <x-textarea label="Question" name="question" />
