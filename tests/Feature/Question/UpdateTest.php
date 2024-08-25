@@ -1,22 +1,18 @@
 <?php
 
-// use App\Models\Question;
-// use App\Models\User;
+use App\Models\{Question, User};
 
-// use function Pest\Laravel\actingAs;
-// use function Pest\Laravel\put;
+use function Pest\Laravel\{actingAs, put};
 
-// it('should be able to update a question', function () {
-//     $user     = User::factory()->create();
-//     $question = Question::factory()->for($user, 'createdBy')->create(['draft' => true]);
+it('should be able to update a question', function () {
+    $user     = User::factory()->create();
+    $question = Question::factory()->for($user, 'createdBy')->create(['draft' => true]);
 
-//     actingAs($user);
+    actingAs($user);
 
-//     put(route('question.update', $question),
-//      ['question' => 'Updated Question?'])
-//             ->assertSuccessful();
+    put(route('question.update', $question), ['question' => 'Updated Question?'])->assertRedirect();
 
-//     $question->refresh();
+    $question->refresh();
 
-//     expect($question)->question->toBe('Updated Question?');
-// });
+    expect($question)->question->toBe('Updated Question?');
+});
