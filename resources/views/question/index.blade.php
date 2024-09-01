@@ -4,7 +4,7 @@
             {{ __('My Questions') }}
         </x-header>
     </x-slot>
-    w
+
     <x-container>
         <x-form post :action="route('question.store')">
             <x-textarea label="Question" name="question" />
@@ -43,6 +43,9 @@
                                         Publicar
                                     </button>
                                 </x-form>
+
+                                <a href="{{ route('question.edit', $question) }}"
+                                    class="text-blue-500 hover:underline">Edit</a>
                             </x-table.body-td>
                         </x-table.body-tr>
                     @endforeach
