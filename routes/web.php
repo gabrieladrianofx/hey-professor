@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{DashboardController, ProfileController, Question, QuestionController};
+use App\Http\Controllers\{Auth\Github, DashboardController, ProfileController, Question, QuestionController};
 use Illuminate\Support\Facades\{Auth, Route};
 
 Route::get('/', function () {
@@ -12,6 +12,9 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+
+Route::get('/github/login', Github\RedirectController::class)->name('github.login');
+Route::get('/github/callback', Github\CallbackController::class)->name('github.callback');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     #region Dashboard Routes
